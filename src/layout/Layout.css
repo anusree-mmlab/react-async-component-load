@@ -30,3 +30,42 @@ ul li {
     color: blue;
     
 }
+
+
+
+#slider {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: blue;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+}
+
+.slidein {
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+}
+
+.slideout {
+    animation: slide-out 0.5s forwards;
+    -webkit-animation: slide-out 0.5s forwards;
+}
+    
+@keyframes slidein {
+    100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slidein {
+    100% { -webkit-transform: translateX(0%); }
+}
+    
+@keyframes slideout {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slideout {
+    0% { -webkit-transform: translateX(0%); }
+    100% { -webkit-transform: translateX(-100%); }
+}

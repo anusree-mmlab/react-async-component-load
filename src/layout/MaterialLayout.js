@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import classes from './Layout.css';
 import asyncComponent from '../hoc/AsyncComponent';
-import Appbar from './Appbar';
 
+import {connect} from 'react-redux';
+
+
+const getMenuClassNames = (isMainMenuClick) => {
+    if (isMainMenuClick) {
+        return `${classes.leftPane} ${classes.slidein}`;
+    } else {
+        return `${classes.leftPane} ${classes.slideout}`;
+    }
+}
 
 const LazyDynamicComponents = (props) => {
     const menu = props.menu;
@@ -48,7 +57,8 @@ class MaterialLayout extends Component {
     }
 
     constructor(props) {
-        super();
+        super(props);
+        console.log(this.props);
     }
 
     onMenuClickHandler(menu) {
@@ -56,6 +66,7 @@ class MaterialLayout extends Component {
     }
 
     render() {
+        console.log(this.props);
         const innerCompnent = (<LazyDynamicComponents menu={this.state.currentMenu}></LazyDynamicComponents>);
 
         return (
@@ -63,7 +74,7 @@ class MaterialLayout extends Component {
                 <h1>Test App</h1>
 
                 <div className={classes.lContainer}>
-                    <div className={classes.leftPane}>
+                    <div className={getMenuClassNames(this.props.is_sidemenu)} id="slider">
                         <ul>
                             <li onClick={(e) => this.onMenuClickHandler('branches')}>Branches</li>
                             <li onClick={(e) => this.onMenuClickHandler('areas')}>Areas</li>
@@ -84,4 +95,14 @@ class MaterialLayout extends Component {
     }
 }
 
-export default MaterialLayout;
+const MapStateToProps = (state) => {console.log('--2', state);
+    return state;
+  }
+  
+  const MapDispatchToProps = (dispatch) => {
+    return {
+    }
+  }
+
+// export default MaterialLayout;
+ export default connect(MapStateToProps,MapDispatchToProps) (MaterialLayout)

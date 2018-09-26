@@ -8,6 +8,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import {connect} from 'react-redux';
+import {onMenuClick} from '../actions/action';
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -28,7 +31,7 @@ function ButtonAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
+            <MenuIcon onClick={(e) => props.menuIconClick()}/>
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.grow}>
             News
@@ -44,4 +47,19 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ButtonAppBar);
+
+
+const MapStateToProps = (state) => { console.log('--1', state);
+  return state;
+}
+
+const MapDispatchToProps = (dispatch) => {
+  return {
+      menuIconClick : () => dispatch(onMenuClick()),
+  }
+}
+
+// export default withStyles(styles)(ButtonAppBar);
+
+export default connect(MapStateToProps,MapDispatchToProps) (withStyles(styles)(ButtonAppBar));
+
