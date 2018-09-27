@@ -16,6 +16,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SidemenuListItems from './Sidemenu';
 
 import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
 
 import { connect } from 'react-redux';
 import { onMenuClick } from '../actions/Actions';
@@ -26,7 +27,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 440,
+    height: '100%',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -85,6 +86,9 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+  },
+  avatar: {
+    margin: 0,
   },
 });
 
@@ -160,14 +164,12 @@ class Layout extends React.Component {
             </IconButton>
             <Grid container spacing={24}>
               <Grid item xs={10}>
-                <Typography variant="title" color="inherit" noWrap>
+                <Typography variant="title" color="inherit" noWrap style={{height: 40, marginTop: 15}}>
                   COHESITY
               </Typography>
               </Grid>
               <Grid item xs={2}>
-                <Typography variant="title" color="inherit" noWrap>
-                  LOGIN
-              </Typography>
+                <Avatar alt="Remy Sharp" src={require('../static/images/user.svg')} className={classes.avatar} />
               </Grid>
             </Grid>
           </Toolbar>
