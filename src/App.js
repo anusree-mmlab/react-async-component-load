@@ -2,24 +2,18 @@ import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import reducer from './store/reducer';
-
-// import logo from './logo.svg';
-// import classes from './App.css';
-// import  Layout  from './layout/Layout';
-
+import reducer from './store/Reducer';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
+import blue from '@material-ui/core/colors/blue';
 import green from '@material-ui/core/colors/green';
-
-import  MainLayout from './layout/MainLayout';
+import Layout from './layout/Layout';
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
 const theme = createMuiTheme(
   {
     palette: {
-      primary: purple,
+      primary: blue,
       secondary: green,
     },
     status: {
@@ -34,14 +28,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-        <div>
-        {/* <Layout>
-          <p className={classes.blinking}>Check the Layout.js</p>
-        </Layout> */}
-
-        <MainLayout/>
-      
-        </div>
+          <div>
+            <Layout />
+          </div>
         </MuiThemeProvider>
       </Provider>
     );

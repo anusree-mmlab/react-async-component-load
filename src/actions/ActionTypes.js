@@ -1,0 +1,2 @@
+export const ON_MENU_CLICK = 'ON_MENU_CLICK';
+export const SIDE_MENU_CLICK = 'SIDE_MENU_CLICK';
